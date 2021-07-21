@@ -1,4 +1,8 @@
-// global variables
+
+//----------------------------
+//            Global variables
+//----------------------------
+
 let employees = [];
 const urlAPI = `https://randomuser.me/api/?results=12&inc=name, picture,
 email, location, phone, dob &noinfo &nat=US`
@@ -7,7 +11,10 @@ const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 
-// fetch data from API
+//----------------------------
+//        Fetch data from API
+//----------------------------
+
 fetch(urlAPI)
 .then(res => res.json())
 .then(res => res.results)
@@ -43,6 +50,10 @@ employees.forEach((employee, index) => {
     gridContainer.innerHTML = employeeHTML;
 }
 
+//----------------------------
+//            Modal Window
+//----------------------------
+
 function displayModal(index) {
 
     // use object destructuring make our template literal cleaner
@@ -59,34 +70,59 @@ function displayModal(index) {
                 <p class="address">${city}</p>
                 <hr />
                 <p>${phone}</p>
-                <p class="address">${street}, ${state} ${postcode}</p>
+                <p class="address">${street.name}, ${state} ${postcode}</p>
                 <p>Birthday:
                 ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
             </div>
+            <button id="previous">&#8592;</button>
+            <button id="next">&#8594;</button>
         `;
 
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
-}
+
+// Next & Previous Buttons
+var prevButton = document.getElementById('previous');
+var nextButton = document.getElementById('next');
+
+  prevButton.addEventListener('click', e => {
+      if (index === 0) {
+        index = 11;
+        displayModal(index);
+      } else {
+        index--;
+        displayModal(index);
+      }
+  });
+
+  nextButton.addEventListener('click', e => {
+    if (index === 11) {
+      index = 0;
+      displayModal(index);
+    } else {
+      index++;
+      displayModal(index);
+    }
+  });
+};
 
 gridContainer.addEventListener('click', e => {
-    // make sure the click is not on the gridContainer itself
     if (e.target !== gridContainer) {
-
-    // select the card element based on its proximity to actual element clicked
-    const card = e.target.closest(".card");
-    const index = card.getAttribute('data-index');
-
+    var card = e.target.closest(".card");
+    var index = card.getAttribute('data-index');
     displayModal(index);
-    }
+  }
 });
 
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
  });
   
- 
-// Search Functionality
+
+//----------------------------
+//        Search Functionality
+//----------------------------
+
 
 // define a variable for the Search bar element
 let searchInput = document.getElementById('searchbar');
@@ -113,7 +149,6 @@ const searchTextLive = (searchInput) => {
 
 //Event Listener to check the function on each keyup
 // x is a unnamed variable
-
 searchInput.addEventListener('keyup', (x) => {
 	let searchInput = x.target.value.toLowerCase();
 	searchTextLive(searchInput);
