@@ -86,8 +86,8 @@ var prevButton = document.getElementById('previous');
 var nextButton = document.getElementById('next');
 
   prevButton.addEventListener('click', e => {
-      if (index === 0) {
-        index = 11;
+      if (index == 0) {
+        index = employees.length - 1;
         displayModal(index);
       } else {
         index--;
@@ -96,7 +96,7 @@ var nextButton = document.getElementById('next');
   });
 
   nextButton.addEventListener('click', e => {
-    if (index === 11) {
+    if (index == 11) {
       index = 0;
       displayModal(index);
     } else {
