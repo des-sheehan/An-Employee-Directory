@@ -1,6 +1,8 @@
 html {
     background-color: whitesmoke;
-    font-family: 'Nunito', sans-serif;
+    /* font-family: 'Bebas Neue', cursive; */
+    /* font-family: 'Nunito', sans-serif; */
+    font-family: 'Inconsolata', monospace;
 }
 
 header {
@@ -17,8 +19,9 @@ input[type=search] {
     line-height: 30px;
     font-size: 20px;
     padding: 5px;  
+    margin-bottom: 50px;
     border-radius: 5px;
-    border: 3px solid cadetblue;
+    border: 3px solid darkslategrey;
     width: 40%;  
     transition: width 0.3s ease-in-out; 
    } 
@@ -33,7 +36,7 @@ input[type=search] {
     padding: 0.5rem;
     margin: 1rem;
     background-color: white;
-    border: solid 2px cadetblue;
+    border: solid 3px darkslategrey;
     border-radius: 10px;
 }
 
